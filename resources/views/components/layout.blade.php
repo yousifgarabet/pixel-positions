@@ -24,9 +24,17 @@
             <a href="">Salaries</a>
             <a href="">Companies</a>
         </nav>
+        @auth
         <nav>
-            <a href="">Post Job</a>
+            <a href="/jobs/create">Post Job</a>
         </nav>
+        @endauth
+
+        @guest
+            <a href="/login">Log in</a>
+            <a href="/register">Sign up</a>
+        @endguest
+
     </nav>
     <main class="mt-10 max-w-[986px] mx-auto">
         {{ $slot }}
