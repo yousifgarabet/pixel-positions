@@ -19,20 +19,31 @@
             </a>
         </nav>
         <nav class="space-x-6 font-bold">
-            <a href="">Jobs</a>
+            <a href="/">Jobs</a>
             <a href="">Careers</a>
             <a href="">Salaries</a>
             <a href="">Companies</a>
         </nav>
         @auth
-        <nav>
+        <nav class="space-x-6 flex">
             <a href="/jobs/create">Post Job</a>
+
+            <form method="POST" action="/logout">
+                @csrf
+                @method('DELETE')
+
+                <button>Log out</button>
+            </form>
+
+
         </nav>
         @endauth
 
         @guest
-            <a href="/login">Log in</a>
-            <a href="/register">Sign up</a>
+            <div class="space-x-6 flex">
+                <a href="/login">Log in</a>
+                <a href="/register">Sign up</a>
+            </div>
         @endguest
 
     </nav>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
@@ -17,25 +16,26 @@ class SessionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        $attributes = $request->validate([
+        $attributes = request()->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        if(!Auth::attempt($attributes)){
+        if (! Auth::attempt($attributes)) {
             throw ValidationException::withMessages([
-                'email' => 'Sorr, those credintial do not match!'
+                'email' => 'Sorry, those credentials do not match.',
             ]);
         }
+
         request()->session()->regenerate();
 
         return redirect('/');
 
     }
 
-    public function destroy(string $id)
+    public function destroy()
     {
         Auth::logout();
         return redirect('/');

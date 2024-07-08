@@ -12,11 +12,13 @@ class Employer extends Model
     use HasFactory;
 
     // Return type is optional
-    function user(): BelongsTo {
-        return $this->BelongsTo(User::class);
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
-    function jobs(): HasMany {
+    public function jobs(): HasMany
+    {
         return $this->hasMany(Job::class);
     }
 }
